@@ -29,7 +29,7 @@ Q1(i)
 #| warning: false
 #Q1(i)
 # plot the time series(sales)
-sales_ts <- ts(sales, frequency = 12)  # monthly data, frequency = 12
+sales_ts <- ts(sales, frequency = 12)  
 plot(sales_ts, main="Monthly Sales", ylab="Sales", xlab="Time")
 
 ```
@@ -115,7 +115,7 @@ The two models selected are ARIMA(1,1,0) and ARIMA(1,1,1)
 #| message: false
 #| warning: false
 #Q2(iii)
-# calculae the different arima models
+# calculate the different arima models
 arima110 <- arima(sales_ts, order = c(1, 1, 0))
 arima111 <- arima(sales_ts, order = c(1, 1, 1))
 arima011 <- arima(sales_ts, order = c(0, 1, 1))
@@ -126,7 +126,9 @@ arima011 <- arima(sales_ts, order = c(0, 1, 1))
 #| warning: false
 
 # plot of residuals of arima(1,1,0)
-tsdisplay(residuals(arima110), main="Residuals of ARIMA(1,1,0)")
+plot(residuals(arima110), type = "o",
+     main = "Residuals of ARIMA(1,1,0)",
+     xlab = "Time", ylab = "Residuals")
 ```
 
 ```{r}
@@ -134,7 +136,9 @@ tsdisplay(residuals(arima110), main="Residuals of ARIMA(1,1,0)")
 #| warning: false
 #Q2(iii)
 # arima(1,1,1) residual plots
-tsdisplay(residuals(arima111), main="Residuals of ARIMA(1,1,1)")
+plot(residuals(arima111), type = "o",
+     main = "Residuals of ARIMA(1,1,0)",
+     xlab = "Time", ylab = "Residuals")
 ```
 
 ```{r}
@@ -170,7 +174,7 @@ White Noise: The error term $e_t$ is assumed to be white noise, that is, $e_t$ $
 \newpage
 Q3(v)
 
-One-step-ahead forecast is obtained by taking expectations at time $t$, noting that $e_{t+1}$ has mean 0) is:
+One-step-ahead forecast is obtained by taking expectations at time $t$ (noting that $e_{t+1}$ has mean 0) is:
 $\hat{S}_{t+1 \mid t} = S_t + \mu + \phi_1 (S_t - S{t-1}) + \theta_1 e_t$.
 
 Q3(vi)
@@ -233,7 +237,7 @@ salt.spec <- spectrum(salt,
                       main = "Spectrum of Salt Concentration",
                       xlab = "Frequency",
                       ylab = "Spectral Density",
-                      log = "no")  # 'log="no"' to avoid log-scaling on the y-axis
+                      log = "no")  
 
 
 ```
@@ -271,4 +275,4 @@ cat("Degrees of freedom (df) =", df_val, "\n")
 cat("95% CI for the spectrum at omega_hat: [", lower_95, ",", upper_95, "]\n")
 ```
 
-The spectral analysis peaks around the frequency of 0.0625 which corresponds to around 16 time units. The confidence interval of [16.661, 36880.941] is a large because the degree of freedom is low. This indicates high uncertainty of the exact magnitude of the peak but since a peak exists, it suggests that there is a meaningful cycle at 16 time units. 
+The spectral analysis peaks around the frequency of 0.0625 which corresponds to around 16 time units. The confidence interval of [16.661, 3680.941] is a large because the degree of freedom is low. This indicates high uncertainty of the exact magnitude of the peak but since a peak exists, it suggests that there is a meaningful cycle at 16 time units. 
