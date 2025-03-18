@@ -137,7 +137,7 @@ plot(residuals(arima110), type = "o",
 #Q2(iii)
 # arima(1,1,1) residual plots
 plot(residuals(arima111), type = "o",
-     main = "Residuals of ARIMA(1,1,0)",
+     main = "Residuals of ARIMA(1,1,1)",
      xlab = "Time", ylab = "Residuals")
 ```
 
